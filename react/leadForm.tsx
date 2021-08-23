@@ -2,11 +2,13 @@
 /* eslint-disable prettier/prettier */
 import React from 'react'
 
+import {useState} from 'react'
+
 import callAPI from  './callApi'
 
 import newId from './newId'
 
-import { useForm } from 'react-hook-form';
+import { useForm} from 'react-hook-form';
 
 import { Form } from './components/Form/stylesForm'
 
@@ -17,44 +19,44 @@ import { Form } from './components/Form/stylesForm'
 const leadForm: React.FC = () => { //formulário para cadastro de leads
 
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true }); //usando o hook useForm
-
+  const [loading, setLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
-
-  const onSubmit = handleSubmit((clientdata) =>{ //ao submeter os dados, eles são armazenados localmente e é feita uma chamada para API gateway, que armazena os dados no dynamo.db
+    const onSubmit = handleSubmit((clientdata) =>{ //ao submeter os dados, eles são armazenados localmente e é feita uma chamada para API gateway, que armazena os dados no dynamo.db
     const clientStore = JSON.stringify(clientdata);
     localStorage.setItem('@client', clientStore);
-    alert(JSON.stringify(clientdata));
 
     const id = newId();
-    callAPI(id, clientdata.name, clientdata.email, clientdata.phone);
-    return (<div>Cadastro realizado com sucesso! Você ganhou R$12,00 em compras!!!</div>)
+    setLoading(true);
+    callAPI(id, clientdata.name, clientdata.phone, clientdata.email);
+    setLoading(false);
     })
+
 
     return (
       <div key="leadForm" className="leadFormContainer">
         <Form method="post" action="" onSubmit={onSubmit}>
           <h1>Cadastro</h1>
 
-          <p>
+          <p> Nome
             <input
-                      {...register("Nome", { required: "Por favor, insira seu nome." })}
+                                  {...register("name", { required: "Por favor, insira seu nome." })}
                       />
           </p>
 
-          <p>
+          <p> E-mail
             <input
-                      {...register("E-mail", { required: "Por favor, insira seu e-mail." })}
+                      {...register("email", { required: "Por favor, insira seu e-mail." })}
                       />
           </p>
 
-          <p>
+          <p> Telefone
           <input
-                      {...register("Telefone", { required: "Por favor, insira seu telefone." })}
+                      {...register("phone", { required: "Por favor, insira seu telefone." })}
                       />
           </p>
 
           <p>
-            <button type="submit"> Cadastrar </button>
+            <button type="submit"> {loading ? 'Cadastrando...' : 'Cadastro'} </button>
           </p>
         </Form>
       </div>

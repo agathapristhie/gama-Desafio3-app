@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Desafio UP MEDAL para a Gama Academy - Priscila Palma Portes Del Vacchio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Solução criada a partir do minimum boiler template padrão da Vtex IO
 
-## Available Scripts
+Foram utilizados os seguintes recursos:
 
-In the project directory, you can run:
+* Markdown + css para formatação
+=> Foi verificado que o site upmedal.com usa a fonte Montserrat e esta foi a fonte escolhida para os estilos. As cores foram adequadas conforme estilo utilizado no site real.
 
-### `yarn start`
+* Flex Layout para formatação dos conteúdos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Slider layout para mostrar os produtos em destaque -
+https://vtex.io/docs/app/vtex.slider-layout
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* Algumas imagens foram armazenada em um bucket S3 da AWS.
 
-### `yarn test`
+* A aplicação com os componentes em react também está salva em um repositório do GitHub: https://github.com/agathapristhie/gama-Desafio3-app :
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*Foi criado um componente customizado (react + typescript) para falar com suporte no whatsapp, no
+rodapé (imagem + link) - vide arquivo whatsappComp.tsx 
 
-### `yarn build`
+*Foi criado um componente para cadastrar leads customizado. Esse item não foi formatado, mas já faz a a chamada para a api gateway e cadastra os dados no banco DynamoDB da AWS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Chamada para api gateway: https://53ni63zrnj.execute-api.sa-east-1.amazonaws.com/dev 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*Foi utilizado o banco DynamoDB e a função lambda para tornar o cadastro possível.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Vide arquivos: leadForm.tsx e callApi
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Nota: Embora na mentoria tenha sido indicado que o texto do add-to-cart button poderia ser modificado, eu criei o componente que consta no arquivo "detailsButton", apenas para ficar mais parecido com o da loja. É um botão sem referência porque ele está dentro do product-summary (ou seja, envolto por um link - ao clicar, ele redirecionará para a PDP)
